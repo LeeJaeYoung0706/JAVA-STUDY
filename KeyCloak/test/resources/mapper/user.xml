@@ -1,0 +1,28 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.keti.iam.idthub.mapper.UserMapper">
+
+    <!-- 유저 테이블에 가입이 되어있는 사람인지 체크 -->
+    <select id="countFindById" parameterType="string" resultType="int">
+        select
+            count(id)
+        from iam.users
+          where id = #{id}
+    </select>
+
+    <!-- 유저 테이블 저장-->
+    <insert id="initSave" parameterType="userSaveRequestDto" >
+        insert into iam.users
+            values ( #{id} , #{email} , #{name} , #{company} , #{location} , #{webSite}
+        , false , now() , now())
+    </insert>
+
+
+    <!--
+        아이디로 유저 정보 검색
+    -->
+    <select id="userInfoFindById" parameterType="string" resultType="userInfoResponseDto">
+        select id , email , name , company , location , website , deactivated
+            from iam.users where id = #{id}
+    </select>
+
+</mapper>

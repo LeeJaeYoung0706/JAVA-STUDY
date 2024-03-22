@@ -1,0 +1,75 @@
+spring:
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+  jwt:
+    header: Authorization
+  profiles:
+    default: local
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  # Spring DataSource PostgreSQL
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    jdbc-url:
+    username:
+    password:
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://idthubkcl.testdev.kr/realms/IDTHUB # require
+          jwk-set-uri: http://idthubkcl.testdev.kr/realms/IDTHUB/protocol/openid-connect/certs  # require
+
+keycloak:
+  enabled: true
+  realm: IDTHUB
+  auth-server-url: http://idthubkcl.testdev.kr
+  ssl-required: external
+  resource: idthub-cli
+  credentials:
+    secret:
+  use-resource-role-mappings: true
+  # bearer-only: true  #// ??? ??? ??? ?? ??.
+  principal-attribute: preferred_username
+
+cors.iamWeb: http://idthubweb.testdev.kr
+cors.keycloak: http://idthubkcl.testdev.kr
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    jdbc-url:
+    username:
+    password:
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:8090/realms/test # require
+          jwk-set-uri: http://localhost:8090/realms/test/protocol/openid-connect/certs  # require
+keycloak:
+  enabled: true
+  realm: test
+  auth-server-url: http://localhost:8090
+  ssl-required: external
+  resource: test
+  credentials:
+    secret: 
+  use-resource-role-mappings: true
+  # bearer-only: true  #// ??? ??? ??? ?? ??.
+  principal-attribute: preferred_username
+
+cors.iamWeb: http://localhost:8081
+cors.keycloak: http://localhost:8090
+

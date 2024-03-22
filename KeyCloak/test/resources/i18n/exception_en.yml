@@ -1,0 +1,36 @@
+unknown:
+  code: "500"
+  message: "An unknown error has occurred."
+required-param:
+  code: "501"
+  message: "required param"
+wrong-request:
+  code: "502"
+  message: "Wrong Request."
+maximum-file-size:
+  code: "503"
+  message: "Maximum file Size"
+not-found-user:
+  code: "400"
+  message: "Not Found User"
+not-found-admin:
+  code: "401"
+  message: "Not Found Admin"
+unauthorized:
+  code: "402"
+  message: "unauthorized"
+forbidden:
+  code: "403"
+  message: "forbidden"
+invalid-token:
+  code: "300"
+  message: "invalid-token"
+expired-token:
+  code: "301"
+  message: "expired-token"
+not-db-error:
+  code: "500"
+  message: "not-db-error"
+not-db-overlap:
+  code: "501"
+  message: "not-db-overlap"
