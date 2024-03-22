@@ -1,0 +1,21 @@
+
+server:
+  port: 0
+# 0 번으로 하면 랜덤하게 포트가 변화
+spring:
+  application:
+    name: user-service
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id}:${random.value}
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defalutZone: http://127.0.0.1:8761/eureka
+#   service-url ?? ????
+#   fetch-registry Eureka ??? ?? ?????? ??? ????? ??? ???? ???? ?????. true? ???? ??? ??? ???.
+
