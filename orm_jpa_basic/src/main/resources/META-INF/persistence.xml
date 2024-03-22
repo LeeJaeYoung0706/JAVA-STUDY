@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <persistence-unit name="jpaBook">
+        <properties>
+            <!-- 필수 속성  javax -> jpa 인터페이스를 가져오는 것, hibernate => 하이버네이트로 사용했을 경우 등록 -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="dev_user"/>
+            <property name="javax.persistence.jdbc.password" value="ers0212!@"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://219.248.82.98:12304/dev_test?&amp;serverTimezone=UTC&amp;autoReconnect=true&amp;allowMultiQueries=true&amp;characterEncoding=UTF-8"/>
+            <!-- 하이버네이트 사용 시 다른 DB에서 MySQL 문법을 사용 가능하도록 변경.
+            데이터 베이스의 방언  JPA = 특정 데이터베이스에 종속적이면 안되는 특징.
+            ex) MySQL = LiMIT , Oracle = ROWNUM , MySQL = VARCHAR , ORACLE = VARCHAR2 같이 문법이 다른경우를 위해서 처리.-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL55Dialect"/>
+            <!-- 옵션 -->
+            <!-- 콘솔에 SQL 출력 여부 (DB 쿼리)-->
+            <property name="hibernate.show_sql" value="true"/>
+            <!-- 가독성 높여주는 formatting 여부 -->
+            <property name="hibernate.format_sql" value="true"/>
+            <!-- Comment 확인 여부 -->
+            <property name="hibernate.use_sql_comments" value="true"/>
+            <!-- hibernate batch 모아서 디비로 커밋보냄 버퍼링기능-->
+            <property name="hibernate.jdbc.batch_size" value="10"/>
+            <property name="hibernate.hbm2ddl.auto " value="create"/>
+        </properties>
+    </persistence-unit>
+</persistence>
